@@ -18,5 +18,7 @@ Route::middleware(['AdminMiddleware'])->group(function () {
     Route::get('/edit-student/{id}', [StudentController::class, 'edit'])->name('students.edit');
     Route::post('/update-student/{id}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('/students/{id}/delete', [StudentController::class, 'destroy'])->name('students.destroy');
+    Route::get('/export-students', [StudentController::class, 'exportStudents'])->name('export.students');
+
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

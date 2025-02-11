@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Exports\StudentsExport;
 
 use Illuminate\Http\Request;
 
@@ -61,7 +62,7 @@ class StudentController extends Controller
         $teachers = Teacher::all();
         return view('student_edit', compact('student', 'teachers'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -91,5 +92,11 @@ class StudentController extends Controller
         }
 
         return response()->json(['message' => 'Student not found'], 404);
+    }
+
+    public function exportStudents()
+    {
+        $exporter = new StudentsExport();
+        return $exporter->export();
     }
 }
